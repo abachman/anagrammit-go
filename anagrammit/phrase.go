@@ -10,8 +10,6 @@ type Phrase struct {
 	Next        int
 }
 
-//// Phrase ////////////////
-
 func NewPhrase() *Phrase {
 	return &Phrase{make([]*Word, MAX_PHRASE), letterFrequency(""), 0}
 }

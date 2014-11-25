@@ -46,7 +46,6 @@ func (g *Generator) initialize() {
 func (g *Generator) Generate(inputPhrase string, output chan string) {
 
 	go func() {
-		// fmt.Println("from", inpt)
 		inputWord := NewWord(inputPhrase)
 
 		// Calculated
@@ -74,7 +73,7 @@ func (g *Generator) Generate(inputPhrase string, output chan string) {
 		}
 
 		if initialLexicon.Length == 0 {
-			fmt.Println("initial lexicon contains no words, no anagrams possible")
+			fmt.Println("[anagrammit] initial lexicon contains no words, no anagrams possible")
 			g.Stop(context)
 			return
 		}
@@ -86,14 +85,11 @@ func (g *Generator) Generate(inputPhrase string, output chan string) {
 }
 
 func (g *Generator) mainloop(lex *Lexicon, inpt *Word, phrase *Phrase, context *generatorContext) {
-	// fmt.Println("mainloop", phrase.Next)
-
 	for i := 0; i < lex.Length; i++ {
 
 		// try the next word in the lexicon
 		nextWord := lex.Words[i]
 
-		// fmt.Println("[mainloop] add word to phrase", nextWord)
 		phrase.Add(nextWord)
 
 		// Decrement inpt's LetterCount by phrase's
@@ -102,7 +98,7 @@ func (g *Generator) mainloop(lex *Lexicon, inpt *Word, phrase *Phrase, context *
 		}
 
 		if inpt.LetterCount[LETTER_TOTAL] == 0 {
-			// Branch A - result found!
+			// result found!
 			context.output <- phrase.DisplayString()
 
 			context.counter++
@@ -114,9 +110,7 @@ func (g *Generator) mainloop(lex *Lexicon, inpt *Word, phrase *Phrase, context *
 			nextLexicon := lex.Generate(i, inpt)
 
 			if len(nextLexicon.Words) > 0 {
-				// fmt.Println("Branch C - recurse with lexicon length", len(nextLexicon.Words))
-
-				// Branch C, there's still hope
+				// recurse, there's still hope
 				g.mainloop(nextLexicon, inpt, phrase, context)
 
 				if context.counter >= g.ResultLimit && g.ResultLimit != 0 {

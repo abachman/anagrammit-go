@@ -40,7 +40,7 @@ func main() {
 		WordLength:  *wordLen,
 		ResultLimit: *limit,
 		Shuffle:     *shuffle,
-		WordsFile:   "tmp/common-word-list.txt",
+		WordsFile:   "tmp/dictionary.txt",
 	}
 
 	generator = anagrammit.NewGenerator(args)
