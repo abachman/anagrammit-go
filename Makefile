@@ -1,5 +1,5 @@
 default:
-	go build -o anagram-generator
+	make generator
 	./anagram-generator "hello world"
 
 build:
