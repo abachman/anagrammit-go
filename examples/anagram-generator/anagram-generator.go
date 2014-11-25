@@ -13,7 +13,7 @@ var p = flag.Parse
 
 func main() {
 	wordLen := flag.Int("wordlength", 3, "minimum word length")
-	limit := flag.Int("limit", 10, "result limit")
+	limit := flag.Int("limit", 10, "result limit, use 0 for unlimited")
 	shuffle := flag.Bool("shuffle", false, "shuffle lexicon")
 	flag.Parse()
 	inpt := flag.Arg(0)
