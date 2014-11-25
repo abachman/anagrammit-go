@@ -1,4 +1,4 @@
-# An anagram generator in Go
+# anagrammit-go -- Anagram Generation in Go
 
 A pure Go anagram generation library. Useful for building command line tools or
 web services. Bring your own [word lists](http://www.anagrammy.com/resources/wordlists.html).
